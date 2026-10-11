@@ -12,7 +12,7 @@ export function Footer() {
   const time = useLocalTime();
 
   return (
-    <footer className="relative z-[2] overflow-hidden border-t border-[var(--border)] bg-[var(--bg)]">
+    <footer className="relative z-[2] overflow-hidden border-t border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_70%,transparent)] backdrop-blur-sm">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-10 pt-20 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <p className="eyebrow mb-4">Currently</p>

@@ -50,7 +50,11 @@
   --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
 
   --grid-line: color-mix(in oklab, var(--fg) 4%, transparent);
-  --grain-opacity: 0;
+  --grain-opacity: 0.35;
+  --dot: color-mix(in oklab, var(--fg) 20%, transparent);
+  --glow-a: color-mix(in oklab, var(--accent) 16%, transparent);
+  --glow-b: color-mix(in oklab, var(--accent-2) 12%, transparent);
+  --vignette: color-mix(in oklab, var(--bg-inset) 70%, transparent);
 
   /* Muted tones for tags / project accents */
   --tone-sage: #5d7f5a;
@@ -79,7 +83,11 @@
   --accent-fg: #161614;
 
   --grid-line: color-mix(in oklab, var(--fg) 3%, transparent);
-  --grain-opacity: 0;
+  --grain-opacity: 0.12;
+  --dot: color-mix(in oklab, var(--fg) 15%, transparent);
+  --glow-a: color-mix(in oklab, var(--accent) 11%, transparent);
+  --glow-b: color-mix(in oklab, var(--accent-2) 8%, transparent);
+  --vignette: rgb(0 0 0 / 0.35);
 
   --tone-sage: #9cbf94;
   --tone-amber: #d9a866;
@@ -175,6 +183,31 @@ body {
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 72px 72px;
+}
+
+/* ---- Ambient page background (see BackgroundFX.tsx) ---- */
+.bg-fx > * {
+  position: absolute;
+  inset: 0;
+}
+.bg-fx__dots {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 26px 26px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, #000 20%, transparent 100%);
+}
+.bg-fx__glow {
+  filter: blur(40px);
+}
+.bg-fx__glow--a {
+  background: radial-gradient(48vmax 36vmax at 12% -6%, var(--glow-a), transparent 70%);
+}
+.bg-fx__glow--b {
+  background: radial-gradient(44vmax 34vmax at 100% 105%, var(--glow-b), transparent 70%);
+}
+.bg-fx__vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, var(--vignette) 130%);
 }
 
 .card-surface {

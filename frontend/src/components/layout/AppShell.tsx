@@ -5,6 +5,7 @@ import { Footer } from './Footer'
 import { Preloader } from './Preloader'
 import { IntroContext } from './IntroContext'
 import { GrainOverlay } from '@/components/textures/GrainOverlay'
+import { BackgroundFX } from '@/components/textures/BackgroundFX'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScroll'
 import { PresenceTracker } from '@/components/providers/PresenceTracker'
 
@@ -16,7 +17,12 @@ export function AppShell({ children }: { children: ReactNode }) {
     <SmoothScrollProvider>
       <IntroContext.Provider value={introDone}>
         <Preloader onDone={() => setIntroDone(true)} />
-        <GrainOverlay />
+        {pathname === '/' && (
+          <>
+            <BackgroundFX />
+            <GrainOverlay />
+          </>
+        )}
         <PresenceTracker />
         <div className="relative flex min-h-dvh flex-col">
           <Header />

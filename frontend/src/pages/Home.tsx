@@ -30,9 +30,9 @@ export default function Home() {
       <Hero />
       <SkillsMarquee />
       <About />
-      <Activity />
-      <Projects />
       <Experience />
+      <Projects />
+      <Activity />
       <Contact />
     </>
   );
