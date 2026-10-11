@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model BlogPost {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  excerpt       String
+  content       String   @db.Text
+  coverImage    String?
+  tags          String[]
+  published     Boolean  @default(true)
+  readTimeMinutes Int    @default(3)
+  publishedAt   DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model StudyPage {
+  id        String      @id @default(cuid())
+  slug      String      @unique
+  title     String
+  content   String      @db.Text
+  icon      String?
+  order     Int         @default(0)
+  parentId  String?
+  parent    StudyPage?  @relation("StudyPageChildren", fields: [parentId], references: [id], onDelete: Cascade)
+  children  StudyPage[] @relation("StudyPageChildren")
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model ProjectStatus {
+  id         String    @id @default(cuid())
+  status     String    @default("offline")
+  activity   String    @default("")
+  /// Last heartbeat from the site owner while signed in.
+  lastSeenAt DateTime?
+  updatedAt  DateTime  @updatedAt
+}
+
+/// One row per browser, keyed by an anonymous random ID the client stores
+/// locally. No IPs or personal data are kept.
+model Visitor {
+  id          String   @id
+  visits      Int      @default(1)
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+
+  @@index([lastSeenAt])
+  @@index([firstSeenAt])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}

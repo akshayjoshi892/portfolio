@@ -1,0 +1,41 @@
+import type { IconType } from 'react-icons'
+import {
+  SiTypescript,
+  SiJavascript,
+  SiOpenjdk,
+  SiPython,
+  SiPostgresql,
+  SiReact,
+  SiNodedotjs,
+  SiExpress,
+  SiShadcnui,
+  SiGooglecloud,
+  SiDocker,
+  SiMongodb,
+  SiRedis,
+  SiLinux,
+  SiGit,
+} from 'react-icons/si'
+import { BrainCircuit, Bot, ChartColumn } from 'lucide-react'
+
+export const SKILL_ICON_MAP: Record<string, { icon: IconType; color: string }> = {
+  TypeScript: { icon: SiTypescript, color: '#3178c6' },
+  JavaScript: { icon: SiJavascript, color: '#f7df1e' },
+  Java: { icon: SiOpenjdk, color: '#ed8b00' },
+  Python: { icon: SiPython, color: '#3776ab' },
+  SQL: { icon: SiPostgresql, color: '#4169e1' },
+  React: { icon: SiReact, color: '#61dafb' },
+  'Node.js': { icon: SiNodedotjs, color: '#5fa04e' },
+  Express: { icon: SiExpress, color: '#737373' },
+  'shadcn/ui': { icon: SiShadcnui, color: '#737373' },
+  Recharts: { icon: ChartColumn as IconType, color: '#22b5bf' },
+  'Agentic Systems': { icon: Bot as IconType, color: '#10a37f' },
+  'Google ADK': { icon: SiGooglecloud, color: '#4285f4' },
+  'OpenAI API': { icon: BrainCircuit as IconType, color: '#412991' },
+  Docker: { icon: SiDocker, color: '#2496ed' },
+  MongoDB: { icon: SiMongodb, color: '#47a248' },
+  Redis: { icon: SiRedis, color: '#dc382d' },
+  GCP: { icon: SiGooglecloud, color: '#4285f4' },
+  Linux: { icon: SiLinux, color: '#fcc624' },
+  Git: { icon: SiGit, color: '#f05032' },
+}
